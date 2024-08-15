@@ -33,20 +33,6 @@ On ImageNet:
 | **MKL** | **72.07** | **72.79** |
 | **NTCE-KD** | **73.12** | **74.90** |
 
-### Installation
-
-Environments:
-
-- Python 3.6
-- PyTorch 1.9.0
-- torchvision 0.10.0
-
-Install the package:
-
-```
-sudo pip3 install -r requirements.txt
-sudo python3 setup.py develop
-```
 
 ### Getting started
 
@@ -59,27 +45,20 @@ sudo python3 setup.py develop
 - If test the models on ImageNet, please download the dataset at <https://image-net.org/> and put them to `./data/imagenet`
 
   ```bash
-  # evaluate teachers
   python3 tools/eval.py -m resnet32x4 # resnet32x4 on cifar100
   python3 tools/eval.py -m ResNet34 -d imagenet # ResNet34 on imagenet
-  
-  # evaluate students
-  python3 tools/eval.p -m resnet8x4 -c download_ckpts/dkd_resnet8x4 # dkd-resnet8x4 on cifar100
-  python3 tools/eval.p -m MobileNetV1 -c download_ckpts/imgnet_dkd_mv1 -d imagenet # dkd-mv1 on imagenet
-  python3 tools/eval.p -m model_name -c output/your_exp/student_best # your checkpoints
   ```
-
 
 2. Training on CIFAR-100
 
 - Download the `cifar_teachers.tar` at <https://github.com/megvii-research/mdistiller/releases/tag/checkpoints> and untar it to `./download_ckpts` via `tar xvf cifar_teachers.tar`.
 
   ```bash
-  # for instance, our DKD method.
-  python3 tools/train.py --cfg configs/cifar100/dkd/res32x4_res8x4.yaml
+  # for our MKL method.
+  python3 tools/train.py --cfg configs/cifar100/ntce/res32x4_res8x4.yaml
 
-  # you can also change settings at command line
-  python3 tools/train.py --cfg configs/cifar100/dkd/res32x4_res8x4.yaml SOLVER.BATCH_SIZE 128 SOLVER.LR 0.1
+  # for our NTCE-KD method.
+  python3 tools/train.py --cfg configs/cifar100/ntce/res32x4_res8x4.yaml NTCE.ISAUG Ture
   ```
 
 3. Training on ImageNet
@@ -87,8 +66,12 @@ sudo python3 setup.py develop
 - Download the dataset at <https://image-net.org/> and put them to `./data/imagenet`
 
   ```bash
-  # for instance, our DKD method.
-  python3 tools/train.py --cfg configs/imagenet/r34_r18/dkd.yaml
+  # for our MKL method.
+  python3 tools/train.py --cfg configs/imagenet/r34_r18/ntce.yaml
+
+  
+  # for our NTCE-KD method.
+  python3 tools/train.py --cfg configs/imagenet/r34_r18/ntce.yaml NTCE.ISAUG Ture
   ```
 
 
