@@ -3,7 +3,7 @@ the official implementation of “NTCE-KD: Non-Target-Class-Enhanced Knowledge D
 
 ### Framework
 
-<div style="text-align:center"><img src=".github/ntce-kd.png" width="80%" ></div>
+<div style="text-align:center"><img src="pic/ntce-kd.png" width="80%" ></div>
 
 
 ### Main Benchmark Results
