@@ -18,3 +18,4 @@ SOLVER:
 NTCE:
   CE_WEIGHT: 1.0
   KD_WEIGHT: 8.0
+  FACTORS: [2, 1.5, 1, 0.5, 0]
